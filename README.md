@@ -1,6 +1,6 @@
 # Create React App
 
-•	An app where users can share places they upload.
+•	An app where users can share places they upload. \
 •	The tool takes as an input from the users the data that describe the place, and view it as a list.
 
 
