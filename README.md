@@ -26,4 +26,4 @@ This is a Fullstack web application built using the MERN stack (MongoDB, Express
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/YourUsername/your-repository-name.git
+   git clone https://github.com/PoratFitoussi/mern-fullstack-authentication-app.git
