@@ -1,0 +1,21 @@
+.center{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.side-in-left-enter{
+    transform: translateX(-100%);
+}
+
+.side-in-left-enter-active{
+    transform: translateX(0);
+    opacity: 1;
+    transition: all 200ms;
+}
+
+.slide-in-left-exit{
+    transform: translateX(0%);
+    opacity: 1;
+}

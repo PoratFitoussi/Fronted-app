@@ -1,0 +1,71 @@
+.form-control {
+  margin: 1rem 0;
+}
+
+.form-control label,
+.form-control input,
+.form-control textarea {
+  display: block;
+  width: 100%;
+  font: inherit;
+}
+
+.form-control label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+  transition: color 0.3s ease; /* מעבר חלק לצבע */
+}
+
+.form-control input,
+.form-control textarea {
+  border: 1px solid #ccc;
+  background: #f8f8f8;
+  padding: 0.75rem; /* הגברת רווח פנימי להרגשה נוחה */
+  border-radius: 4px; /* פינות מעוגלות */
+  font-size: 1rem; /* גודל טקסט ברור */
+  transition: border-color 0.3s ease, background-color 0.3s ease; /* מעבר חלק לצבעי גבול ורקע */
+}
+
+.form-control input:focus,
+.form-control textarea:focus {
+  outline: none;
+  background: #ebebeb;
+  border-color: #510077;
+}
+
+.form-control input:focus-visible,
+.form-control textarea:focus-visible {
+  outline: 2px solid #510077; /* הדגשת מיקוד למשתמשים עם keyboard */
+}
+
+.form-control--invalid label,
+.form-control--invalid p {
+  color: red;
+  font-size: 0.9rem;
+}
+
+.form-control--invalid input,
+.form-control--invalid textarea {
+  border-color: red;
+  background: #ffd1d1;
+}
+
+.form-control--invalid input:focus,
+.form-control--invalid textarea:focus {
+  background: #ffd1d1;
+  border-color: #b50000;
+}
+
+.form-control input::placeholder,
+.form-control textarea::placeholder {
+  color: #aaa; /* צבע עדין למקום ריק */
+}
+
+.form-control input[type="text"]:disabled,
+.form-control textarea:disabled {
+  background-color: #f1f1f1;
+  color: #aaa;
+  border-color: #ddd;
+  cursor: not-allowed;
+}

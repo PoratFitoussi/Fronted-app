@@ -1,0 +1,89 @@
+.button {
+  font: inherit;
+  padding: 0.6rem 1.8rem;
+  border: 1px solid #ff0055;
+  border-radius: 6px;
+  background: #ff0055;
+  color: white;
+  cursor: pointer;
+  margin-right: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease; /* אנימציה חלקה לכל שינוי */
+}
+
+.button:focus {
+  outline: 2px solid #ff4382; /* הדגשת מצב פוקוס לנגישות */
+  outline-offset: 2px;
+}
+
+.button:hover,
+.button:active {
+  background: #ff4382;
+  border-color: #ff4382;
+  transform: translateY(-2px); /* אפקט הרמה עדין */
+}
+
+.button:disabled,
+.button:hover:disabled,
+.button:active:disabled {
+  background: #ccc;
+  color: #979797;
+  border-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.button--inverse {
+  background: transparent;
+  color: #ff0055;
+  border-color: #ff0055;
+  transition: all 0.3s ease;
+}
+
+.button--inverse:hover,
+.button--inverse:active {
+  color: white;
+  background: #ff0055;
+  transform: translateY(-2px);
+}
+
+.button--danger {
+  background: #830000;
+  border-color: #830000;
+  transition: all 0.3s ease;
+}
+
+.button--danger:hover,
+.button--danger:active {
+  background: #f34343;
+  border-color: #f34343;
+  transform: translateY(-2px);
+}
+
+/* גדלים שונים */
+.button--small {
+  font-size: 0.8rem;
+  padding: 0.4rem 1rem;
+}
+
+.button--big {
+  font-size: 1.5rem;
+  padding: 0.8rem 2rem;
+}
+
+/* התאמות רספונסיביות */
+@media (max-width: 768px) {
+  .button {
+    font-size: 1rem;
+    padding: 0.5rem 1.2rem;
+  }
+
+  .button--small {
+    font-size: 0.7rem;
+  }
+
+  .button--big {
+    font-size: 1.3rem;
+  }
+}

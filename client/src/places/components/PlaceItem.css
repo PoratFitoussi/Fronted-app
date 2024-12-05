@@ -1,0 +1,120 @@
+.place-item {
+  margin: 1rem 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.place-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.place-item__content {
+  display: flex;
+  flex-direction: column; 
+  width: 100%;  
+  box-sizing: border-box; 
+}
+
+.place-item__image {
+  height: 25rem;
+  width: 100%;  
+  overflow: hidden;
+}
+
+.place-item__info {
+  width: 100%;  
+  padding: 1.5rem; 
+  text-align: left; 
+  word-wrap: break-word; 
+  overflow: hidden;  
+  box-sizing: border-box;  
+}
+
+.place-item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.place-item__image img:hover {
+  transform: scale(1.05);
+}
+
+.place-item__info h2,
+.place-item__info h3,
+.place-item__info p {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.place-item__info h2 {
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.place-item__info h3 {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.place-item__actions {
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid #ccc;
+}
+
+.place-item__modal-content {
+  padding: 0;
+}
+
+.place-item__modal-actions {
+  text-align: right;
+}
+
+.place-item__actions button,
+.place-item__actions a {
+  margin: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.place-item__actions button:hover,
+.place-item__actions a:hover {
+  background-color: #0056b3;
+}
+
+.map-container {
+  height: 20rem;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .place-item__content {
+    flex-direction: column; 
+  }
+
+  .place-item__image {
+    height: 25rem;
+    width: 100%; 
+  }
+
+  .place-item__info {
+    width: 100%; 
+    padding: 2rem;
+    text-align: left;
+  }
+}
