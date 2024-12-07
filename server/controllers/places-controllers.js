@@ -28,7 +28,7 @@ const getPlaceById = async (req, res, next) => {
 
 //GET request middleware to fetch all places of a given user id from the database 
 const getPlacesByUserId = async (req, res, next) => {
-    
+
     const userId = req.params.uid;
     let userWithPlaces;
 
@@ -118,19 +118,26 @@ const updatePlace = async (req, res, next) => {
     const placeId = req.params.pid;
     const { title, description } = req.body;    //Resive the property the of the user from the body of the url requst
 
+    //Find the place by it's id
     let place;
     try {
-        place = await Place.findByIdAndUpdate(  //update the changes on the place by his pid
-            { _id: placeId },
-            {
-                $set: {
-                    title: title,
-                    description: description
-                }
-            }
-        );
+        place = await Place.findById(placeId); 
     } catch (err) {
-        return next(new HttpError('Something went worng during the update', 500));
+        return next(new HttpError('Something went worng, could not find the place', 500));
+    }
+
+    //Check if the one that want to eddit that place is the creator
+    if (place.creator.toString() !== req.userData.userId) {
+        return next(new HttpError('Could not update that place, you are not the creator', 401))
+    }
+
+    //update the value of the document
+    place.title = title;
+    place.description = description;
+    try {
+        await place.save();
+    } catch (err) {
+        return next(new HttpError('Something went worng during the update process', 500));
     }
 
     res.json({ place: place.toObject({ getters: true }) }); //return the place after the change was made
@@ -144,13 +151,16 @@ const deletePlace = async (req, res, next) => {
     try {
         place = await Place.findById(placeId).populate('creator');;    //find the place by the pid
     } catch (err) {
-        console.log(err.message);
         const error = new HttpError('Something went worng during the delete proccess', 500);
         return next(error)
     }
 
     if (!place) {
         return next(new HttpError('Could not find a place for that id.', 404));  //in case the user didn't give a valid id
+    }
+
+    if(place.creator.id !== req.userData.userId){
+        return next(new HttpError('Could not delete that place, you are not the creator', 401))
     }
 
     //Delete the place and make sure it's also remove from the user document that created that place
@@ -166,10 +176,6 @@ const deletePlace = async (req, res, next) => {
             throw new Error('Creator not found.');
         }
         await sess.commitTransaction(); //confirm the transaction
-
-        // place.creator.places.pull(place._id);   //remove the place from the creator's places array
-        // await place.creator.save({session: sess});  //Save all the changes that been made in the user document
-        // await sess.commitTransaction(); //Confirm all the change that been made by confirm the transaction
     } catch (err) {
         console.log(err.message);
         const error = new HttpError('Something went worng during the delete proccess', 500);

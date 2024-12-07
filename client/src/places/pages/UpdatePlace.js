@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams,useNavigate } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { useForm } from "../../shared/hooks/form-hooks";
 
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from "../../shared/util/validation";
@@ -90,7 +90,10 @@ const UpdatePlace = () => {
         try {
             await sendRequest(`http://localhost:5000/api/places/${pid}`,
                 'PATCH',
-                { 'Content-Type': 'application/json' },
+                {
+                    'Content-Type': 'application/json',
+                    Authorization: `Beares ${auth.token}`, //make the server decoding the token 
+                },
                 JSON.stringify(
                     {
                         title: formState.inputs.title.value,
@@ -98,7 +101,7 @@ const UpdatePlace = () => {
                     }
                 )
             )
-            //setIsExists(data);
+
             nav('/' + auth.userId + '/places');   //send to the home page after the update
         } catch { }
     }

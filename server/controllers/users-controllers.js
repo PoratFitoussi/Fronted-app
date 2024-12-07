@@ -1,19 +1,23 @@
+import { validationResult } from "express-validator";
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+
 import HttpError from "../models/http-error.js";
 import User from "../models/user.js"
-import { validationResult } from "express-validator";
+
 
 //GET request middleware to fetch a list of all users 
 const getUsers = async (req, res, next) => {
-    
+
     let users;
-    try{
+    try {
         users = await User.find({}, '-password');   //resiving all the users documents without their password field
     } catch {
         return next(new HttpError('Something went worng during the proccess', 500));
     }
 
     //send a respond that all the documents inside the collection will return inside array and will look as an object
-    res.json({ usersList: users.map(user => user.toObject({ getters: true })) });   
+    res.json({ usersList: users.map(user => user.toObject({ getters: true })) });
 }
 
 //POST request middleware to create a user documents
@@ -26,7 +30,7 @@ const signup = async (req, res, next) => {
     }
 
     //Resive the property the of the user from the body of the url requst
-    const { name, email, password} = req.body;
+    const { name, email, password } = req.body;
 
     //Check if a user with the same email is already exist
     let userExists;
@@ -35,9 +39,16 @@ const signup = async (req, res, next) => {
     } catch (err) {
         return next(new HttpError('Something went worng during the proccess', 500))
     }
-
     if (userExists) {
         return next(new HttpError(`Could not create a user, the email: ${email} already exists`, 422));
+    }
+
+    //Encrypt the password
+    let hashedPassword;
+    try {
+        hashedPassword = await bcrypt.hash(password, 12);
+    } catch (err) {
+        return next(new HttpError('Could not encrypt the password', 422));
     }
 
     //Create an object that hold the property of the new user document
@@ -46,7 +57,7 @@ const signup = async (req, res, next) => {
         email,
         image: req.file.path, //dummy value
         places: [], //now evry place from this user will be add to this model 
-        password
+        password: hashedPassword
     });
 
     try {
@@ -55,27 +66,67 @@ const signup = async (req, res, next) => {
         return next(new HttpError('Something went worng during the signup proccess', 500))
     }
 
-    res.status(201).json({ user: newUser.toObject({ getters: true }) });
+    //Create a token
+    let token;
+    try {
+        token = jwt.sign(
+            {
+                userId: newUser.id,
+                email: newUser.email
+            },
+            'my_super_secret_key',
+            { expiresIn: "1h" }
+        );
+    } catch (err) {
+        return next(new HttpError('Signup has failed, please try again', 500));
+    }
+
+    res.status(201).json({ userId: newUser.id, email: newUser.email, token: token });
 }
 
 //POST request middleware that authenticates user 
 const login = async (req, res, next) => {
     const { email, password } = req.body; //Resive the property the of the user login 
-
-    let isConnected;
-
+    
+    let authUser;
     try {
-        isConnected = await User.findOne({ email: email, password: password }); //Check if there is a document of user with the property of pass and email in the DB
+        authUser = await User.findOne({ email: email }); //Chec if there is a document of user with the same emil and return the document
     } catch {
         return next(new HttpError('Something went worng during the login proccess', 500));
     }
 
-    //check if the document is empty or not, meaning if the value is null than the input is bad
-    if (!isConnected) {
+    let userIsValid = false;
+    try {
+        userIsValid = await bcrypt.compare(password, authUser.password); //Compare the password input and the encrypt password
+    } catch (err) {
+        
+        return next(new HttpError('Something went worng during the login proccess', 500));
+    }
+
+    //Check if the password is valid
+    if (!userIsValid) {
         const error = new HttpError('The email or password are worng try again', 401); //create an error object that send to the error handler
         return next(error);
     }
-    res.status(200).json({message: `Welcome ${isConnected.name}`, user:  isConnected.toObject({getters: true})});
+
+    //Create a token
+    let token;
+    try {
+        token = jwt.sign(
+            {
+                userId: authUser.id,
+                email: authUser.email
+            },
+            'my_super_secret_key',
+            { expiresIn: "1h" }
+        );
+    } catch (err) {
+        return next(new HttpError('Login has failed, please try again', 500));
+    }
+
+
+
+    res.status(200).json({ userId: authUser.id, email: authUser.email, token: token });
 }
 
 const userRoutesHandler = {

@@ -9,11 +9,11 @@
   margin-right: 1rem;
   text-decoration: none;
   display: inline-block;
-  transition: all 0.3s ease; /* אנימציה חלקה לכל שינוי */
+  transition: all 0.3s ease; 
 }
 
 .button:focus {
-  outline: 2px solid #ff4382; /* הדגשת מצב פוקוס לנגישות */
+  outline: 2px solid #ff4382; 
   outline-offset: 2px;
 }
 
@@ -21,7 +21,7 @@
 .button:active {
   background: #ff4382;
   border-color: #ff4382;
-  transform: translateY(-2px); /* אפקט הרמה עדין */
+  transform: translateY(-2px); 
 }
 
 .button:disabled,
@@ -72,7 +72,6 @@
   padding: 0.8rem 2rem;
 }
 
-/* התאמות רספונסיביות */
 @media (max-width: 768px) {
   .button {
     font-size: 1rem;

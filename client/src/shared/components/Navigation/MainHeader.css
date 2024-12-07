@@ -10,16 +10,16 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
   padding: 0 1rem;
   z-index: 5;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* מעבר חלק */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .main-header:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* הצללה חזקה יותר בעת ריחוף */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 main {
   margin-top: 5rem;
-  transition: margin-top 0.3s ease; /* אפקט חלק למעבר */
+  transition: margin-top 0.3s ease;
 }
 
 @media (min-width: 768px) {
@@ -30,7 +30,7 @@ main {
 
 .main-header a:focus,
 .main-header button:focus {
-  outline: 3px solid #fff; /* הדגשה ברורה כשיש מיקוד */
+  outline: 3px solid #fff; 
 }
 
 .main-header a,
@@ -44,14 +44,14 @@ main {
 
 .main-header a:hover,
 .main-header button:hover {
-  color: #ffe6e6; /* שינוי צבע בעת ריחוף */
+  color: #ffe6e6; 
 }
 
-/* מענה לגובה שונה במסכים קטנים */
+
 @media (max-width: 768px) {
   .main-header {
-    height: 3.5rem; /* גובה מותאם למסכים קטנים */
-    padding: 0 0.8rem; /* הפחתת padding במסכים קטנים */
+    height: 3.5rem; 
+    padding: 0 0.8rem; 
   }
   
   main {

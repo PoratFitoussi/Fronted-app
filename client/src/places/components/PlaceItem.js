@@ -8,7 +8,6 @@ import { AuthContext } from "../../shared/context/auth-context.js";
 import { useHttpClient } from "../../shared/hooks/http-hooks";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner.js";
 import ErrorModal from "../../shared/components/UIElements/ErrorModal.js";
-//import Avatar from "../../shared/components/UIElements/Avatar.js"
 import './PlaceItem.css'
 
 // The `PlaceItem` component displays the details of a single place, including its image, title, description, and address.
@@ -34,7 +33,11 @@ const PlaceItem = props => {
     const confirmDeleteHandler = async () => {    //A function that delete the place, for now there is no backend to do this so we just print to the screen
         setShowConfirmModal(false);
         try {
-            await sendRequest(`http://localhost:5000/api/places/${props.id}`, 'DELETE');
+            await sendRequest(
+                `http://localhost:5000/api/places/${props.id}`,
+                'DELETE',
+                { Authorization: `Beares ${auth.token}` }  //make the server decoding the token 
+            );
             props.onDelete(props.id); //send the pid of the deleted place to re-render the page without him
         } catch { }
 
@@ -83,7 +86,7 @@ const PlaceItem = props => {
 
             <li className='place-item'>
                 <Card className="place-item__content">
-                    {isLoading && <LoadingSpinner asOverlay/>}
+                    {isLoading && <LoadingSpinner asOverlay />}
                     <div className="place-item__image">
                         <img src={`http://localhost:5000/${props.image}`} alt={props.name} />
                     </div>

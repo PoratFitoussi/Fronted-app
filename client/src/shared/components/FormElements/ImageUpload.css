@@ -10,32 +10,32 @@
   width: 13rem;
   height: 13rem;
   border: 1px solid #ccc;
-  border-radius: 8px; /* פינות מעוגלות */
+  border-radius: 8px; 
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   margin-bottom: 1rem;
-  background-color: #f9f9f9; /* רקע עדין */
+  background-color: #f9f9f9; 
   position: relative;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* צל עדין */
-  transition: box-shadow 0.3s ease; /* אפקט מעבר לצל */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+  transition: box-shadow 0.3s ease; 
 }
 
 .image-upload__preview:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* אפקט צל כאשר מרחפים מעל */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
 }
 
 .image-upload__preview img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease; /* אפקט זום רך */
+  transition: transform 0.3s ease; 
 }
 
 .image-upload__preview img:hover {
-  transform: scale(1.05); /* אפקט זום קל בעת ריחוף */
+  transform: scale(1.05); 
 }
 
 .image-upload__preview span {
@@ -45,11 +45,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: none; /* הסתר את הטקסט כאשר התמונה מוצגת */
+  display: none; 
 }
 
 .image-upload__preview.no-image span {
-  display: block; /* הצג את הטקסט אם אין תמונה */
+  display: block; 
 }
 
 @media (max-width: 768px) {

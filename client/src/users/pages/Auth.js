@@ -70,8 +70,6 @@ const Auth = () => {
     const authSubmitHandler = async event => {
         event.preventDefault(); //Prevent anything from happening for now
 
-        //console.log(formState.inputs);
-
         if (isLoginMode) {
             try {
                 //Send a POST requset to the server to login the user
@@ -85,7 +83,7 @@ const Auth = () => {
                         }
                     )
                 );
-                auth.login(data.user.id);   //change the context to login      
+                auth.login(data.userId, data.token);   //change the context to login      
             } catch { }
         } else {
             try {
@@ -100,7 +98,7 @@ const Auth = () => {
                     {},
                     formOb
                 );
-                auth.login(data.user.id);   //change the context to login 
+                auth.login(data.userId, data.token);  //change the context to login 
             } catch {
             }
         }
