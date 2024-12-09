@@ -11,7 +11,7 @@ import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 // using the userId obtained from the route parameters and the TEMP_PLACES data.
 const UserPlaces = () => {
 
-    const {isLoading, error, sendRequest, errorHandler} = useHttpClient(); //Custom http hook
+    const { isLoading, error, sendRequest, errorHandler } = useHttpClient(); //Custom http hook
     const userId = useParams().uid;  //recive the user id 
     const [dataList, setDataList] = useState(null); //state for the user list of places
 
@@ -19,17 +19,17 @@ const UserPlaces = () => {
         const requestHandller = async () => {
             try {
                 //Request that retrieve a list of all places by its user ID 
-                const data = await sendRequest(`http://localhost:5000/api/places/user/${userId}`);
-                setDataList(data.place);    
+                const data = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}/places/user/${userId}`);
+                setDataList(data.place);
             } catch { }
         };
         requestHandller();
     }, [sendRequest, userId]);
 
-    
+
     //A function that be called once a place is delete and update the list
     const placeDeleteHandler = deletedPlaceId => {
-        setDataList(placeList => 
+        setDataList(placeList =>
             placeList.filter(place => place.id !== deletedPlaceId)
         );
     }

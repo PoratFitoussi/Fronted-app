@@ -12,7 +12,7 @@ const checkToken = (req, res, next) => {
           if (!token) {
                throw new HttpError('Authorization failed, try againg!', 401);
           }
-          const decodedToken = jwt.verify(token, 'my_super_secret_key'); //Check if the secret key that the user send in the token is valid 
+          const decodedToken = jwt.verify(token, process.env.SECRET_KEY); //Check if the secret key that the user send in the token is valid 
           req.userData = { userId: decodedToken.userId };  //Add to the request the id of the user
           next();
      } catch (err) {

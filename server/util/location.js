@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import HttpError from '../models/http-error.js';
 
-const API_KEY = 'AIzaSyA2rCUvZMib8Zawtl6oHLtsmT9hp_WvsGs';
+const API_KEY = process.env.API_KEY;
 
 async function getCoordsForAddress(address) {
 

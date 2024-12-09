@@ -73,7 +73,7 @@ const Auth = () => {
         if (isLoginMode) {
             try {
                 //Send a POST requset to the server to login the user
-                const data = await sendRequest('http://localhost:5000/api/users/login',
+                const data = await sendRequest(process.env.REACT_APP_BACKEND_URL + '/users/login',
                     'POST',
                     { 'Content-Type': 'application/json' },
                     JSON.stringify(
@@ -93,7 +93,7 @@ const Auth = () => {
                 formOb.append('password', formState.inputs.password.value);
                 formOb.append('image', formState.inputs.image.value);
                 //Send a POST requset to the server to create a user
-                const data = await sendRequest('http://localhost:5000/api/users/signup',
+                const data = await sendRequest(process.env.REACT_APP_BACKEND_URL + '/users/signup',
                     'POST',
                     {},
                     formOb

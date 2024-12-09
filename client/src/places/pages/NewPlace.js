@@ -55,9 +55,9 @@ const NewPlace = () => {
             formData.append('address', formState.inputs.address.value);
             formData.append('creator', auth.userId);
             formData.append('image', formState.inputs.image.value);
-            await sendRequest('http://localhost:5000/api/places',
+            await sendRequest(process.env.REACT_APP_BACKEND_URL + '/places',
                 'POST',
-                {Authorization: `Beares ${auth.token}`},   //make the server decoding the token 
+                { Authorization: `Beares ${auth.token}` },   //make the server decoding the token 
                 formData
             );
             nav('/'); //re-render the route after adding the place

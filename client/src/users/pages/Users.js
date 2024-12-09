@@ -17,7 +17,7 @@ const Users = () => {
         const requestHandller = async () => {   //the function that send the http get request
             try {
                 //Send the GET request and revice the response
-                const data = await sendRequest('http://localhost:5000/api/users');
+                const data = await sendRequest(process.env.REACT_APP_BACKEND_URL+'/users');
                 setDataList(data.usersList);
 
             } catch (err) { }

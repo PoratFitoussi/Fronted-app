@@ -74,7 +74,7 @@ const signup = async (req, res, next) => {
                 userId: newUser.id,
                 email: newUser.email
             },
-            'my_super_secret_key',
+            process.env.SECRET_KEY,
             { expiresIn: "1h" }
         );
     } catch (err) {
@@ -117,7 +117,7 @@ const login = async (req, res, next) => {
                 userId: authUser.id,
                 email: authUser.email
             },
-            'my_super_secret_key',
+            process.env.SECRET_KEY,
             { expiresIn: "1h" }
         );
     } catch (err) {

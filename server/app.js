@@ -52,7 +52,7 @@ app.use((error, req, res, next) => { //Error handler
 })
 
 mongoose
-    .connect('mongodb+srv://manu:academ123@cluster0.o6ioe.mongodb.net/mern?retryWrites=true&w=majority&appName=Cluster0') //the mongodb connection to the user named manue with password academ123 to the collection named places
+    .connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.o6ioe.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority&appName=Cluster0`) //the mongodb connection to the user named manue with password academ123 to the collection named places
     .then(() => {
         app.listen(5000); //listen to port 5000
     })

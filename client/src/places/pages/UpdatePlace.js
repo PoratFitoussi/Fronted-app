@@ -42,7 +42,7 @@ const UpdatePlace = () => {
         //Request to get the user pid
         const fetchRequest = async () => {
             try {
-                const getRespondData = await sendRequest(`http://localhost:5000/api/places/${pid}`);
+                const getRespondData = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}/places/${pid}`);
                 setLoadPlace(getRespondData.place);
                 setFormData({       //set value of the title and the description to the current one
                     title: {
@@ -88,7 +88,7 @@ const UpdatePlace = () => {
     const placeUpdateSubmitHandler = async event => {
         event.preventDefault();
         try {
-            await sendRequest(`http://localhost:5000/api/places/${pid}`,
+            await sendRequest(`${process.env.REACT_APP_BACKEND_URL}/places/${pid}`,
                 'PATCH',
                 {
                     'Content-Type': 'application/json',
