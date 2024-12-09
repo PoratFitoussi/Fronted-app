@@ -81,13 +81,13 @@ const signup = async (req, res, next) => {
         return next(new HttpError('Signup has failed, please try again', 500));
     }
 
-    res.status(201).json({ userId: newUser.id, email: newUser.email, token: token });
+    res.status(201).json({ userId: newUser.id, email: newUser.email, token: token, name: newUser.name });
 }
 
 //POST request middleware that authenticates user 
 const login = async (req, res, next) => {
     const { email, password } = req.body; //Resive the property the of the user login 
-    
+
     let authUser;
     try {
         authUser = await User.findOne({ email: email }); //Chec if there is a document of user with the same emil and return the document
@@ -99,7 +99,7 @@ const login = async (req, res, next) => {
     try {
         userIsValid = await bcrypt.compare(password, authUser.password); //Compare the password input and the encrypt password
     } catch (err) {
-        
+
         return next(new HttpError('Something went worng during the login proccess', 500));
     }
 
@@ -125,8 +125,7 @@ const login = async (req, res, next) => {
     }
 
 
-
-    res.status(200).json({ userId: authUser.id, email: authUser.email, token: token });
+    res.status(200).json({ userId: authUser.id, email: authUser.email, token: token, name: authUser.name });
 }
 
 const userRoutesHandler = {

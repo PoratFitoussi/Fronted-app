@@ -83,7 +83,7 @@ const Auth = () => {
                         }
                     )
                 );
-                auth.login(data.userId, data.token);   //change the context to login      
+                auth.login(data.userId, data.token, data.name);   //change the context to login      
             } catch { }
         } else {
             try {
@@ -98,7 +98,8 @@ const Auth = () => {
                     {},
                     formOb
                 );
-                auth.login(data.userId, data.token);  //change the context to login 
+                console.log(data.name);
+                auth.login(data.userId, data.token, data.name);  //change the context to login 
             } catch {
             }
         }
@@ -113,7 +114,7 @@ const Auth = () => {
                 <h2>Login Required</h2>
                 <hr />
                 <form onSubmit={authSubmitHandler}>
-                    {!isLoginMode && <ImageUpload center id="image" onInput={inputHandler}/>}
+                    {!isLoginMode && <ImageUpload center id="image" onInput={inputHandler} />}
                     {!isLoginMode && <Input  //The input for user name in case it's a signup mode
                         id="name"
                         label="Your Name"

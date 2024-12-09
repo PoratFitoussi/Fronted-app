@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-
+import { useState,useContext } from 'react';
+import {AuthContext} from '../../context/auth-context.js';
 import MainHeader from "./MainHeader";
 import './MainNavigation.css';
 import NavLinks from './NavLinks.js';
@@ -14,7 +14,7 @@ import Backdrop from '../UIElements/Backdrop';
 const MainNavigation = props => {
 
     const [drawerIsOpen, setDrawerIsOpen] = useState(false); // Track the side drawer state
-    
+    const auth = useContext(AuthContext);
     const openDrawerHandller = () => {
         setDrawerIsOpen(true);
     }
@@ -43,9 +43,9 @@ const MainNavigation = props => {
                     <span />
                 </button>
 
-                <h1 className="main-navigation__title "> {/*The Title of the app */}
+                <h1 className="main-navigation__title"> {/*The Title of the app */}
                     <Link to='/'>
-                        YourePlaces
+                        {auth.isLoggedIn ? `${auth.name} Place` : 'YourePlaces'}
                     </Link>
                 </h1>
 

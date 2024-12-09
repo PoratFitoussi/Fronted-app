@@ -22,8 +22,6 @@ const PlaceItem = props => {
     const openMapHandler = () => setShowMap(true);
     const closeMapHandler = () => setShowMap(false);
 
-    console.log = `http://localhost:5000/${props.image}`;
-
     const showDeleteWarningHandler = () => {    //A function that change the value of the modal delete state to true
         setShowConfirmModal(true);
     }
@@ -69,18 +67,22 @@ const PlaceItem = props => {
                 footerClass="place-item__modal-actions"
                 footer={
                     <React.Fragment>
-                        <Button inverse onClick={cancelDeleteHandler}>
-                            CANCEL
-                        </Button>
-                        <Button onClick={confirmDeleteHandler}>
-                            DELETE
-                        </Button>
+                        <div className="place-item__modal-actions-cancel">
+                            <Button inverse onClick={cancelDeleteHandler}>
+                                CANCEL
+                            </Button>
+                        </div>
+                        <div className="place-item__modal-actions-danger">
+                            <Button onClick={confirmDeleteHandler}>
+                                DELETE
+                            </Button>
+                        </div>
+
                     </React.Fragment>
                 }
             > {/*A modal for the delete button */}
-                <p>
-                    Do you want to proceed and delete this place? Please note that it
-                    can't be undone thereafter.
+                <p className="message">
+                Are you sure you want to delete this place? This action cannot be undone, and the data will be permanently lost.
                 </p>
             </Modal>
 

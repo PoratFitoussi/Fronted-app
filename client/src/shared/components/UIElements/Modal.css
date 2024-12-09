@@ -12,7 +12,9 @@
 .modal__header {
   width: 100%;
   padding: 1rem 0.5rem;
-  background: #2a006e;
+  background: #ff0000;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
   color: white;
 }
 

@@ -5,7 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 const MIME_TYPE_MAP = {
     'image/png': 'png',
     'image/jpeg': 'jpeg',
-    'image/jpg': 'jpg'
+    'image/jpg': 'jpg',
+    'image/webp' : 'webp'
 }
 
 const fileUpload = multer({

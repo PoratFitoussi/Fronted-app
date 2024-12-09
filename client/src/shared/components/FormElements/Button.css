@@ -1,9 +1,9 @@
 .button {
   font: inherit;
   padding: 0.6rem 1.8rem;
-  border: 1px solid #ff0055;
+  border: 1px solid black;
   border-radius: 6px;
-  background: #ff0055;
+  background: black;
   color: white;
   cursor: pointer;
   margin-right: 1rem;
@@ -12,45 +12,42 @@
   transition: all 0.3s ease; 
 }
 
-.button:focus {
-  outline: 2px solid #ff4382; 
-  outline-offset: 2px;
-}
-
 .button:hover,
 .button:active {
-  background: #ff4382;
-  border-color: #ff4382;
+  color: black;
+  background: white;
+  border-color: black;
   transform: translateY(-2px); 
 }
 
 .button:disabled,
 .button:hover:disabled,
 .button:active:disabled {
-  background: #ccc;
-  color: #979797;
-  border-color: #ccc;
+  background: #ffffff;
+  color: #6f6f6f;
+  border-color: #6f6f6f;
   cursor: not-allowed;
   transform: none;
+
 }
 
 .button--inverse {
   background: transparent;
-  color: #ff0055;
-  border-color: #ff0055;
+  color: #000000;
+  border-color: #000000;
   transition: all 0.3s ease;
 }
 
 .button--inverse:hover,
 .button--inverse:active {
   color: white;
-  background: #ff0055;
+  background: #000000;
   transform: translateY(-2px);
 }
 
 .button--danger {
-  background: #830000;
-  border-color: #830000;
+  background: #ff0000;
+  border-color: #ff0000;
   transition: all 0.3s ease;
 }
 
@@ -61,7 +58,6 @@
   transform: translateY(-2px);
 }
 
-/* גדלים שונים */
 .button--small {
   font-size: 0.8rem;
   padding: 0.4rem 1rem;

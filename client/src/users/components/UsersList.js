@@ -11,7 +11,7 @@ const UsersList = props => {
   //In case we don't have any users yet
   if (props.items.length === 0) {
     return (
-      <div className='center '>
+      <div className='center'>
         <Card>
           <h2>No users found.</h2>
         </Card>

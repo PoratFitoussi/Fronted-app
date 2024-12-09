@@ -8,6 +8,7 @@
   justify-content: space-around;
   margin-right: 2rem;
   cursor: pointer;
+  
 }
 
 .main-navigation__menu-btn span {
@@ -18,12 +19,19 @@
 }
 
 .main-navigation__title {
-  color: white;
+  color: white; 
 }
 
 .main-navigation__title a {
+  font-size: 2rem;
+  display: flex;           
+  justify-content: center; 
+  align-items: center;
+  font-family: cursive;
   text-decoration: none;
   color: white;
+  outline: none;
+  border: none;
 }
 
 .main-navigation__header-nav {
@@ -42,4 +50,12 @@
   .main-navigation__header-nav {
     display: block;
   }
+}
+
+.main-navigation__menu-btn:focus,
+.main-navigation__menu-btn:active,
+.main-navigation__title a:focus,
+.main-navigation__title a:active {
+  outline: none;
+  border: none;  
 }

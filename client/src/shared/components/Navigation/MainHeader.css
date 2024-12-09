@@ -6,8 +6,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: #66ff00;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
+  background:#000000;
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
   padding: 0 1rem;
   z-index: 5;
   transition: background-color 0.3s ease, box-shadow 0.3s ease; 
@@ -16,6 +16,7 @@
 .main-header:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+
 
 main {
   margin-top: 5rem;
@@ -35,16 +36,17 @@ main {
 
 .main-header a,
 .main-header button {
-  color: white;
+  color: #ffe6e6;
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
 .main-header a:hover,
 .main-header button:hover {
-  color: #ffe6e6; 
+  padding: 0.5rem;
+  color: #ffc157; 
 }
 
 

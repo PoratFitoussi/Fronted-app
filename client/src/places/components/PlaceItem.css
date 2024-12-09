@@ -31,6 +31,7 @@
   word-wrap: break-word; 
   overflow: hidden;  
   box-sizing: border-box;  
+  font-family: Georgia, serif;
 }
 
 .place-item__image img {
@@ -48,6 +49,7 @@
 .place-item__info h3,
 .place-item__info p {
   margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
   color: #333;
 }
 
@@ -72,15 +74,35 @@
 }
 
 .place-item__modal-actions {
+  display: flex;
   text-align: right;
+  justify-content: flex-end;
 }
-
+.place-item__modal-actions-danger button{
+  background: #f34343;
+  border-color: #f34343;
+}
+.place-item__modal-actions-cancel button:hover{
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  border-color: #000000;
+  transform: translateY(-2px);
+}
+.place-item__modal-actions-danger button:hover{
+  background: #ff0000;
+  border-color: #000000;
+  transform: translateY(-2px);
+}
+.message{
+  font-size: 1.2rem;
+}
 .place-item__actions button,
 .place-item__actions a {
-  margin: 0.5rem;
+  font-family: cursive;
+  margin: 1rem;
   padding: 0.7rem 1.5rem;
   font-size: 1rem;
-  background-color: #007bff;
+  background-color: #000000;
   color: white;
   border: none;
   border-radius: 5px;
@@ -91,7 +113,9 @@
 
 .place-item__actions button:hover,
 .place-item__actions a:hover {
-  background-color: #0056b3;
+  background-color: #ffffff;
+  color: black;
+  border: #000000;
 }
 
 .map-container {
@@ -101,6 +125,7 @@
   overflow: hidden;
   margin-top: 1rem;
 }
+
 
 @media (min-width: 768px) {
   .place-item__content {
@@ -118,3 +143,4 @@
     text-align: left;
   }
 }
+
